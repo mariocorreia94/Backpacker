@@ -23,14 +23,17 @@ public class UserController extends HttpServlet {
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public ModelAndView showLogin() {
 
+        User user = new User();
+
         ModelAndView modelAndView = new ModelAndView("index");
 
-        modelAndView.addObject("newUser", new User());
+        modelAndView.addObject("newUser", user);
+        modelAndView.addObject("login", user);
 
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "newUser")
+    @RequestMapping(method = RequestMethod.POST, value = "createNewUser")
     public String createClient(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
@@ -45,12 +48,16 @@ public class UserController extends HttpServlet {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "login")
-    public String login(@Valid User user) {
+    public ModelAndView login(@ModelAttribute("login") User user) {
+
+        ModelAndView modelAndView = new ModelAndView();
 
         if (userServiceImp.authenticate(user.getUsername(), user.getPassword())) {
-            return "redirect:/yesssss";
+            modelAndView.setViewName("destination");
+            return modelAndView;
         }
 
-        return "redirect:/";
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
 }
