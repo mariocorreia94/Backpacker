@@ -14,8 +14,13 @@ public class User {
     @Pattern(regexp = "[a-z-A-Z]*", message = "O nome contem caracteres inválidos")
     private String username;
 
+    @NotNull(message = "Password é obrigatório")
+    @NotBlank(message = "Password é obrigatório")
     private String password;
 
+    @NotNull(message = "Email é obrigatório")
+    @NotBlank(message = "Email é obrigatório")
+    @Pattern(regexp = "", message = "Email não é válido")
     private String email;
 
     public User() {

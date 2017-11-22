@@ -15,57 +15,10 @@
 </head>
 <body>
 <td class="text-center">
-    <div class="container">
-        <form:form modelAttribute="newUser" action="newUser">
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <table class="table table-bordered table-hover" id="tab_logic">
-                        <thead>
-                        <tr>
-                            <th class="text-center">
-                                Name
-                            </th>
-                            <th class="text-center">
-                                Password
-                            </th>
-                            <th class="text-center">
-                                email
-                            </th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr id='addr0'>
-                            <td>
-                                <form:input type="text" path="username" class="form-control" placeholder="Nome"/>
-                                <form:errors path="username" style="color:red"/>
-                            </td>
-
-                            <td>
-
-                                <form:input type="password" path="password" class="form-control" placeholder="Password"/>
-                                <form:errors path="password" style="color:red"/>
-                            </td>
-                            <td>
-                                <form:input type="text" path="email" class="form-control" placeholder="Morada"/>
-                                <form:errors path="email" style="color:red"/>
-                            </td>
-                        </tr>
-                        <tr id='addr1'></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <form:button type="submit" method="POST" formaction="createNewUser"
-                         class="btn btn-default pull-left">Adicionar Cliente</form:button>
-            <div style="color:red">${error}</div>
-        </form:form>
-    </div>
-
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
             <div class="form-login">
-                <form:form method="post" modelAttribute="login" action="login">
+                <form:form modelAttribute="login" action="login">
 
                     <form:input type="text" path="username" class="form-control" placeholder="Nome"/>
                     <form:errors path="username" style="color:red"/>
@@ -76,7 +29,8 @@
                 </br>
                 <div class="wrapper">
             <span class="group-btn">
-            <form:button type="submit" formaction="login" class="btn btn-default pull-left">Login</form:button>
+
+            <form:button type="submit" method="POST" formaction="login" class="btn btn-default pull-left">Login</form:button>
             </span>
                 </div>
             </div>
