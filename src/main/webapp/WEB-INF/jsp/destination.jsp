@@ -8,8 +8,36 @@
 <body>
 <h1>Bem-vindo ${user.username}</h1>
 
-<div id="newTrip">
-    <form:form action="newTrip" modelAttribute="newTrip"
+<div class="newTrip">
+    <div class="row">
+        <div class="span12">
+            <form class="form-horizontal" action='newTrip' method="POST">
+                <fieldset>
+                    <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label">Origem</label>
+                        <div class="controls">
+                            <input type="text" id="origin" name="origin" placeholder="Origem" class="input-xlarge">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- Password-->
+                        <label class="control-label">Destino</label>
+                        <div class="controls">
+                            <input type="text" id="destiny" name="destiny" placeholder="Destino" class="input-xlarge">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success">Continuar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>
