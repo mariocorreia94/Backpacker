@@ -1,7 +1,7 @@
 package backpacker.project.controller;
 
-import backpacker.project.model.User;
 import backpacker.project.service.UserService;
+import backpacker.project.utils.GoogleMapsAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +25,6 @@ public class WelcomeController extends HttpServlet{
 
         ModelAndView modelAndView = new ModelAndView("destination");
 
-        User user = (User) session.getAttribute("user");
-
         if (session.getAttribute("user") == null)
         {
             model.addAttribute("error", "Sessão inválida, por favor efectuar login novemante");
@@ -35,6 +33,14 @@ public class WelcomeController extends HttpServlet{
         }
 
         return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "newTrip")
+    public ModelAndView newTrip(String origin, String destiny) {
+
+        GoogleMapsAPI googleMaps = new GoogleMapsAPI(origin, destiny);
+        System.out.println("Distancia: " + googleMaps.calculateDistance() + " km");
+        return null;
     }
 
 }
