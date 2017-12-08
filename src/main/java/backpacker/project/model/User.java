@@ -1,5 +1,6 @@
 package backpacker.project.model;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
@@ -18,9 +19,7 @@ public class User {
     @NotBlank(message = "Password é obrigatório")
     private String password;
 
-    @NotNull(message = "Email é obrigatório")
-    @NotBlank(message = "Email é obrigatório")
-    @Pattern(regexp = "", message = "Email não é válido")
+    @Email
     private String email;
 
     public User() {

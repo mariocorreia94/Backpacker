@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
             <div class="form-login">
-                <form:form modelAttribute="login" action="login">
+                <form:form modelAttribute="newLogin" method="POST" >
 
                     <form:input type="text" path="username" class="form-control" placeholder="Nome"/>
                     <form:errors path="username" style="color:red"/>
@@ -30,7 +30,7 @@
                 <div class="wrapper">
             <span class="group-btn">
 
-            <form:button type="submit" method="POST" formaction="login" class="btn btn-default pull-left">Login</form:button>
+            <form:button type="submit" class="btn btn-default pull-left">Login</form:button>
             </span>
                 </div>
             </div>

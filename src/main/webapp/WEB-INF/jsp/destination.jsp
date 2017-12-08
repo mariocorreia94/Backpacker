@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mario
-  Date: 15/11/2017
-  Time: 22:54
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Choose destination</title>
 </head>
 <body>
-<h1>Vamos escolher destino e origem aqui</h1>
+<h1>Bem-vindo ${user.username}</h1>
 </body>
 </html>

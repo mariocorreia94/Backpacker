@@ -2,6 +2,7 @@ package backpacker.project.controller;
 
 import backpacker.project.model.User;
 import backpacker.project.service.UserService;
+import backpacker.project.utils.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,26 +26,28 @@ public class RegisterController extends HttpServlet {
     @RequestMapping(method = RequestMethod.GET, value = "/register")
     public ModelAndView showRegister() {
 
-        User user = new User();
-
         ModelAndView modelAndView = new ModelAndView("register");
 
-        modelAndView.addObject("newUser", user);
+        modelAndView.addObject("newUser", new User());
 
         return modelAndView;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createNewUser")
-    public String createClient(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public ModelAndView createClient(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/";
+            modelAndView.setViewName("register");
+            return modelAndView;
         }
 
+        user.setPassword(Security.getHash(user.getPassword()));
         userServiceImp.newUser(user);
 
-        redirectAttributes.addFlashAttribute("Added user " + user.getUsername() + " successfully!");
+        modelAndView.setViewName("index");
+        return modelAndView;
 
-        return "redirect:/";
     }
 }

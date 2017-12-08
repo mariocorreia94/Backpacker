@@ -6,8 +6,6 @@ import backpacker.project.utils.Security;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import java.util.List;
-
 public class HibernateUser {
 
     HibernateSessionManager sessionManager;
