@@ -29,7 +29,7 @@
                                 Password
                             </th>
                             <th class="text-center">
-                                email
+                                Email
                             </th>
 
                         </tr>
@@ -47,7 +47,7 @@
                                 <form:errors path="password" style="color:red"/>
                             </td>
                             <td>
-                                <form:input type="text" path="email" class="form-control" placeholder="Morada"/>
+                                <form:input type="text" path="email" class="form-control" placeholder="Email"/>
                                 <form:errors path="email" style="color:red"/>
                             </td>
                         </tr>

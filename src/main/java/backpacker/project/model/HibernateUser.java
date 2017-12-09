@@ -40,15 +40,15 @@ public class HibernateUser {
 
     }
 
-    public boolean authenticate(String username, String password) {
+    public User authenticate(String username, String password) {
 
         User user = findByName(username);
 
         if (user == null || !user.getPassword().equals(password)) {
-            return false;
+            return null;
         }
 
-        return true;
+        return user;
     }
 
     public void setSessionManager(HibernateSessionManager sessionManager) {

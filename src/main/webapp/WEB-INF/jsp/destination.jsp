@@ -8,10 +8,12 @@
 <body>
 <h1>Bem-vindo ${user.username}</h1>
 
+<h2><div style="color:green">${success}</div></h2>
+
 <div class="newTrip">
     <div class="row">
         <div class="span12">
-            <form class="form-horizontal" action='newTrip' method="POST">
+            <form class="form-horizontal" action="newTrip" method="POST">
                 <fieldset>
                     <div class="control-group">
                         <!-- Username -->
@@ -35,6 +37,7 @@
                     </div>
                 </fieldset>
             </form>
+            <div style="color:red">${error}</div>
         </div>
     </div>
 </div>

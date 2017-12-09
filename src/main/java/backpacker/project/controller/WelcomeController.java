@@ -5,7 +5,6 @@ import backpacker.project.utils.GoogleMapsAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -36,12 +35,40 @@ public class WelcomeController extends HttpServlet{
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "newTrip")
-    public ModelAndView newTrip(String origin, String destiny) {
+    @RequestMapping(method = RequestMethod.POST, value = "/newTrip")
+    public ModelAndView newTrip(Model model, String origin, String destiny) {
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (origin.trim().isEmpty() && destiny.trim().isEmpty()) {
+            model.addAttribute("error", "Por favor preencha a Origem e o Destino");
+            modelAndView.setViewName("destination");
+            return modelAndView;
+        } else if (origin.trim().isEmpty()) {
+            model.addAttribute("error", "Por favor indique o ponto de partida");
+            modelAndView.setViewName("destination");
+            return modelAndView;
+        } else if (destiny.trim().isEmpty()) {
+            model.addAttribute("error", "Por favor indique o destino");
+            modelAndView.setViewName("destination");
+            return modelAndView;
+        }
 
         GoogleMapsAPI googleMaps = new GoogleMapsAPI(origin, destiny);
-        System.out.println("Distancia: " + googleMaps.calculateDistance() + " km");
-        return null;
+        int km = googleMaps.calculateDistance();
+
+        if (km == -1) {
+            model.addAttribute("error", "Não foi possivel encontrar a sua origem");
+            modelAndView.setViewName("destination");
+            return modelAndView;
+        } else if (km == -2) {
+            model.addAttribute("error", "Não foi possivel encontrar o seu destino");
+            modelAndView.setViewName("destination");
+            return modelAndView;
+        }
+        model.addAttribute("success", "Distancia: " + km + " km");
+        modelAndView.setViewName("destination");
+        return modelAndView;
     }
 
 }

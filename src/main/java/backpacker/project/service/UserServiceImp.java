@@ -14,7 +14,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public boolean authenticate(String username, String password) {
+    public User authenticate(String username, String password) {
 
         return hibernateUser.authenticate(username, password);
 

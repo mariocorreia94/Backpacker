@@ -37,6 +37,8 @@
             </form:form>
             <div style="color:red">${error}</div>
         </div>
+        <p><a href="register">Registar</a></p>
     </div>
+</td>
 </body>
 </html>

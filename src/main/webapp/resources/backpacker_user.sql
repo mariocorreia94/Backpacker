@@ -12,4 +12,4 @@ CREATE TABLE `user` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` VALUES (1,'Admin','cf6405814229a7b2e057829886f753daaf30afdc','admin@backpacker.com');
+INSERT INTO `user` VALUES (1,'Admin','addb47291ee169f330801ce73520b96f2eaf20ea','admin@backpacker.com');

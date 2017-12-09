@@ -41,11 +41,13 @@ public class LoginController extends HttpServlet {
             //return "redirect:/";
         }
 
-        if (userServiceImp.authenticate(user.getUsername(), Security.getHash(user.getPassword()))) {
+        User userAuth = userServiceImp.authenticate(user.getUsername(), Security.getHash(user.getPassword()));
 
-            session.setAttribute("user", user);
+        if (userAuth != null) {
+
+            session.setAttribute("user", userAuth);
             modelAndView.setViewName("redirect:/destination");
-            model.addAttribute("user", user);
+            model.addAttribute("user", userAuth);
             return modelAndView;
         }
 

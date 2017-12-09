@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    boolean authenticate(String username, String password);
+    User authenticate(String username, String password);
 
     void newUser(User user);
 

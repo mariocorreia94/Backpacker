@@ -46,7 +46,7 @@ public class RegisterController extends HttpServlet {
         user.setPassword(Security.getHash(user.getPassword()));
         userServiceImp.newUser(user);
 
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("redirect:/");
         return modelAndView;
 
     }
