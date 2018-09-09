@@ -2,8 +2,6 @@ package backpacker.project.service;
 
 import backpacker.project.model.User;
 
-import java.util.List;
-
 public interface UserService {
 
     User authenticate(String username, String password);

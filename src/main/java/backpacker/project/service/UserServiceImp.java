@@ -24,8 +24,9 @@ public class UserServiceImp implements UserService {
     @Override
     public void newUser(User user) {
 
-        hibernateUser.newUser(user);
-
+        if(hibernateUser.findByName(user.getUsername()) != null) {
+            hibernateUser.newUser(user);
+        }
     }
 
     @Transactional

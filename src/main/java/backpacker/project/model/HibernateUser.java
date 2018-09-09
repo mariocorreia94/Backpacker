@@ -3,6 +3,7 @@ package backpacker.project.model;
 
 import backpacker.project.persistence.HibernateSessionManager;
 import backpacker.project.utils.Security;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -36,7 +37,11 @@ public class HibernateUser {
 
         query.setString("username", username);
 
-        return (User) query.uniqueResult();
+        try{
+            return (User) query.uniqueResult();
+        } catch (HibernateException e) {
+            return null;
+        }
 
     }
 
