@@ -10,9 +10,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @SessionAttributes("user")
@@ -22,10 +25,15 @@ public class LoginController extends HttpServlet {
     private UserService userServiceImp;
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
-    public ModelAndView showLogin() {
+    public ModelAndView showLogin(HttpSession session) {
 
+        User loggedUser = (User) session.getAttribute("user");
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("newLogin", new User());
+
+        if(loggedUser != null) {
+            modelAndView.setViewName("redirect:/destination");
+        }
 
         return modelAndView;
     }
@@ -44,10 +52,10 @@ public class LoginController extends HttpServlet {
         User userAuth = userServiceImp.authenticate(user.getUsername(), Security.getHash(user.getPassword()));
 
         if (userAuth != null) {
-
             session.setAttribute("user", userAuth);
-            modelAndView.setViewName("redirect:/destination");
+            session.setMaxInactiveInterval(10800);
             model.addAttribute("user", userAuth);
+            modelAndView.setViewName("redirect:/destination");
             return modelAndView;
         }
 

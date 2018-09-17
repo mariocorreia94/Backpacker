@@ -13,7 +13,7 @@
 <div class="newTrip">
     <div class="row">
         <div class="span12">
-            <form class="form-horizontal" action="newTrip" method="POST">
+            <form class="form-horizontal" action="destination" method="POST">
                 <fieldset>
                     <div class="control-group">
                         <!-- Username -->
@@ -41,6 +41,10 @@
         </div>
     </div>
 </div>
+
+<form method="post" action="logout">
+    <input type="submit" value="Logout"/>
+</form>
 
 </body>
 </html>

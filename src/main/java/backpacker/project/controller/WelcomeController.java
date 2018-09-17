@@ -35,8 +35,8 @@ public class WelcomeController extends HttpServlet{
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/newTrip")
-    public ModelAndView newTrip(Model model, String origin, String destiny) {
+    @RequestMapping(method = RequestMethod.POST, value = "/destination")
+    public ModelAndView destination(Model model, String origin, String destiny) {
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -50,7 +50,7 @@ public class WelcomeController extends HttpServlet{
             return modelAndView;
         } else if (destiny.trim().isEmpty()) {
             model.addAttribute("error", "Por favor indique o destino");
-            modelAndView.setViewName("destination");
+            modelAndView.setViewName("/destination");
             return modelAndView;
         }
 
@@ -66,9 +66,18 @@ public class WelcomeController extends HttpServlet{
             modelAndView.setViewName("destination");
             return modelAndView;
         }
-        model.addAttribute("success", "Distancia: " + km + " km");
+        model.addAttribute("success", "De: " + origin + " a " + destiny +  " Distancia: " + km + " km");
         modelAndView.setViewName("destination");
         return modelAndView;
     }
 
-}
+    @RequestMapping(method = RequestMethod.POST, value = "/logout")
+    public ModelAndView logout(HttpSession session, ModelAndView modelAndView) {
+        session.removeAttribute("user");
+        modelAndView.clear();
+        modelAndView.setViewName("redirect:/index");
+
+        return modelAndView;
+    }
+
+    }
